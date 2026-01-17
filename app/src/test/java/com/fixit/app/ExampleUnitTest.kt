@@ -1,4 +1,4 @@
-package com.fixit.app
+package com.megh.fixit
 
 import org.junit.Test
 

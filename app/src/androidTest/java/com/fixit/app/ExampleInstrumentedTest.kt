@@ -1,4 +1,4 @@
-package com.fixit.app
+package com.megh.fixit
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -2,6 +2,9 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.FixItV10" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
+        <item name="android:windowBackground">@color/bg_main</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
 </resources>

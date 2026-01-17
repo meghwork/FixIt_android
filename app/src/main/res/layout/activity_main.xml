@@ -54,6 +54,8 @@
                 app:cardCornerRadius="16dp"
                 app:cardElevation="1dp"
                 app:cardUseCompatPadding="true"
+                android:backgroundTint="@color/search_bg"
+                android:textColor="@color/text_primary"
                 android:layout_marginTop="16dp">
 
                 <LinearLayout
@@ -91,11 +93,13 @@
                 android:text="Start Troubleshooting Wizard"
                 android:textAllCaps="false"
                 android:layout_marginBottom="12dp"
-                app:cornerRadius="16dp"
+                app:cornerRadius="14dp"
                 app:icon="@android:drawable/ic_menu_manage"
                 app:iconPadding="10dp"
                 app:iconTint="#FFFFFF"
-                android:backgroundTint="#3B82F6"
+                app:strokeWidth="2dp"
+                app:strokeColor="#E5E7EB"
+                android:backgroundTint="@color/button_primary"
                 android:textColor="#FFFFFF"
                 android:layout_marginTop="20dp"/>
 
@@ -106,11 +110,11 @@
                 android:layout_height="52dp"
                 android:text="Report an Issue"
                 android:textAllCaps="false"
-                app:cornerRadius="16dp"
+                app:cornerRadius="14dp"
                 app:icon="@android:drawable/ic_dialog_alert"
                 app:iconPadding="10dp"
                 app:iconTint="#111827"
-                app:strokeWidth="1dp"
+                app:strokeWidth="2dp"
                 app:strokeColor="#E5E7EB"
                 android:backgroundTint="#FFFFFF"
                 android:textColor="#111827"
@@ -129,425 +133,19 @@
                 android:paddingBottom="12dp"
                 android:layout_marginTop="20dp"/>
 
-            <!-- Card 1 -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardKitchen"
+            <!-- Categories RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCategories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true">
+                android:nestedScrollingEnabled="false"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="14dp"
-                    android:gravity="center_vertical">
-
-                    <!-- icon box -->
-                    <FrameLayout
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="#EEF4FF"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:srcCompat="@drawable/cup_hot"
-                            app:tint="#3B82F6" />
-
-                    </FrameLayout>
-
-                    <!-- text -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp">
-
-                        <TextView
-                            android:id="@+id/tvKitchenTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Kitchen Appliances"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:id="@+id/tvKitchenSub"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Troubleshoot refrigerators, microwaves, ovens, and more"
-                            android:textSize="13sp"
-                            android:textColor="#6B7280"
-                            android:paddingTop="4dp"/>
-                    </LinearLayout>
-
-                    <!-- arrow -->
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        app:srcCompat="@drawable/chevron_right"
-                        app:tint="#A9A9A9" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!-- Card 2 -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardElectronics"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="14dp"
-                    android:gravity="center_vertical">
-
-                    <!-- icon box -->
-                    <FrameLayout
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="#EEF4FF"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:srcCompat="@drawable/tv"
-                            app:tint="#3B82F6" />
-
-                    </FrameLayout>
-
-                    <!-- text -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp">
-
-                        <TextView
-                            android:id="@+id/tvElectronicsTitle"
-                            android:text="Electronics"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:id="@+id/tvElectronicsSub"
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Fix TVs, audio systems, and entertainment devices"
-                            android:textSize="13sp"
-                            android:textColor="#6B7280"
-                            android:paddingTop="4dp"/>
-                    </LinearLayout>
-
-                    <!-- arrow -->
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        app:srcCompat="@drawable/chevron_right"
-                        app:tint="#A9A9A9" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!-- Card 3 -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardCameras"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="14dp"
-                    android:gravity="center_vertical">
-
-                    <!-- icon box -->
-                    <FrameLayout
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="#EEF4FF"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:srcCompat="@drawable/camera"
-                            app:tint="#3B82F6" />
-
-                    </FrameLayout>
-
-                    <!-- text -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp">
-
-                        <TextView
-                            android:id="@+id/tvCameraTitle"
-                            android:text="Cameras  Optics"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:id="@+id/tvCameraSub"
-                            android:text="Repair cameras, lenses, and optical equipment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="13sp"
-                            android:textColor="#6B7280"
-                            android:paddingTop="4dp"/>
-                    </LinearLayout>
-
-                    <!-- arrow -->
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        app:srcCompat="@drawable/chevron_right"
-                        app:tint="#A9A9A9" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!-- Card 4 -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardComputers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="14dp"
-                    android:gravity="center_vertical">
-
-                    <!-- icon box -->
-                    <FrameLayout
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="#EEF4FF"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:srcCompat="@drawable/laptop"
-                            app:tint="#3B82F6" />
-
-                    </FrameLayout>
-
-                    <!-- text -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp">
-
-                        <TextView
-                            android:id="@+id/tvComputerTitle"
-                            android:text="Computers"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:id="@+id/tvComputerSub"
-                            android:text="Solve desktop and laptop issues"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="13sp"
-                            android:textColor="#6B7280"
-                            android:paddingTop="4dp"/>
-                    </LinearLayout>
-
-                    <!-- arrow -->
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        app:srcCompat="@drawable/chevron_right"
-                        app:tint="#A9A9A9" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!-- Card 5 -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardMobile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="14dp"
-                    android:gravity="center_vertical">
-
-                    <!-- icon box -->
-                    <FrameLayout
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="#EEF4FF"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:srcCompat="@drawable/phone"
-                            app:tint="#3B82F6" />
-
-                    </FrameLayout>
-
-                    <!-- text -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp">
-
-                        <TextView
-                            android:id="@+id/tvMobileTitle"
-                            android:text="Mobile Devices"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:id="@+id/tvMobileSub"
-                            android:text="Fix phones, tablets, and accessories"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="13sp"
-                            android:textColor="#6B7280"
-                            android:paddingTop="4dp"/>
-                    </LinearLayout>
-
-                    <!-- arrow -->
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        app:srcCompat="@drawable/chevron_right"
-                        app:tint="#A9A9A9" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!-- Card 6 -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardHome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="14dp"
-                    android:gravity="center_vertical">
-
-                    <!-- icon box -->
-                    <FrameLayout
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="#EEF4FF"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:srcCompat="@drawable/fan"
-                            app:tint="#3B82F6" />
-
-                    </FrameLayout>
-
-                    <!-- text -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp">
-
-                        <TextView
-                            android:id="@+id/tvHomeTitle"
-                            android:text="Home Appliances"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:id="@+id/tvHomeSub"
-                            android:text="Repair washing machines, AC units, and more"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="13sp"
-                            android:textColor="#6B7280"
-                            android:paddingTop="4dp"/>
-                    </LinearLayout>
-
-                    <!-- arrow -->
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        app:srcCompat="@drawable/chevron_right"
-                        app:tint="#A9A9A9" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
+            <!-- Footer -->
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="© 2025 FixIt. Simple solutions for everyday problems."
+                android:text="© 2026 FixIt. Simple solutions for everyday problems."
                 android:textSize="12sp"
                 android:textColor="#6B7280"
                 android:gravity="center"

@@ -1,16 +1,17 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.fixit.app"
+    namespace = "com.megh.fixit"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.fixit.app"
+        applicationId = "com.megh.fixit"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -47,4 +48,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(platform("com.google.firebase:firebase-bom:34.7.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-firestore")
 }

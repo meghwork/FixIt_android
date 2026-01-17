@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bg_main">#F7F8FC</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="text_primary">#1C1C1E</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="search_bg">#F1F3F6</color>
+    <color name="button_primary">#3B82F6</color>
+
 </resources>
