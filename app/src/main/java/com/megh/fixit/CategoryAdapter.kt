@@ -1,3 +1,5 @@
+package com.megh.fixit
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -5,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.megh.fixit.R
 
 class CategoryAdapter(
     private val list: List<Category>,
-    private val context: Context
+    private val context: Context,
+    private val onItemClick: (Category) -> Unit
 ) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -28,9 +30,8 @@ class CategoryAdapter(
         val item = list[position]
 
         holder.title.text = item.name ?: ""
-        holder.subtitle.text = (item.subtitle ?: "").trim().trim('"') // removes quotes if stored like "text"
+        holder.subtitle.text = (item.subtitle ?: "").trim().trim('"')
 
-        // icon from Firestore -> must match drawable name exactly
         val iconName = (item.icon ?: "").trim().trim('"')
         val resId = holder.itemView.context.resources.getIdentifier(
             iconName,
@@ -38,9 +39,11 @@ class CategoryAdapter(
             holder.itemView.context.packageName
         )
         holder.icon.setImageResource(if (resId != 0) resId else R.drawable.ic_launcher_foreground)
+
+        holder.itemView.setOnClickListener {
+            onItemClick(item)
+        }
     }
-
-
 
     override fun getItemCount(): Int = list.size
 }

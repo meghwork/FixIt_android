@@ -7,31 +7,25 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:126073195005:android:dff0f2fd2cecf36d1f3194",
-        "android_client_info": {
-          "package_name": "com.fixit.app"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBQfASp7NvBat7NgNHDPIUO7VA9vliPmrE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:126073195005:android:9f9f16a91444919b1f3194",
         "android_client_info": {
           "package_name": "com.megh.fixit"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "126073195005-6jpl50nu1a6a6n777j8q5fqso3a8do4a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.megh.fixit",
+            "certificate_hash": "db854e869ce91352325b839240b5772fd7777185"
+          }
+        },
+        {
+          "client_id": "126073195005-mc7fnnd8mntdop4vmcpbabv0n7ni6lmg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBQfASp7NvBat7NgNHDPIUO7VA9vliPmrE"
@@ -39,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126073195005-mc7fnnd8mntdop4vmcpbabv0n7ni6lmg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

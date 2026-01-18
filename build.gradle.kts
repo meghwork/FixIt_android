@@ -1,6 +1,14 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+// Root build.gradle.kts
 plugins {
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.kotlin.android) apply false
-    id("com.google.gms.google-services") version "4.4.4" apply false
+    // Android Application Plugin - Must be 8.1.0 or higher for Gradle 8.2
+    id("com.android.application") version "8.1.1" apply false
+    
+    // Android Library Plugin - Match version above
+    id("com.android.library") version "8.1.1" apply false
+    
+    // Kotlin Plugin - Must be 1.9.0 or higher
+    id("org.jetbrains.kotlin.android") version "1.9.0" apply false
+    
+    // Firebase Plugin
+    id("com.google.gms.google-services") version "4.4.1" apply false
 }

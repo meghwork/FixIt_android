@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_main"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:paddingBottom="16dp"
-            android:paddingTop="32dp">
+            android:paddingHorizontal="16dp"
+            android:paddingTop="32dp"
+            android:paddingBottom="10dp"
+            app:layout_scrollFlags="scroll|enterAlways">
 
-            <!-- ===== HEADER ===== -->
             <TextView
                 android:id="@+id/tvAppName"
                 android:layout_width="match_parent"
@@ -32,8 +32,9 @@
                 android:text="FixIt"
                 android:textStyle="bold"
                 android:textSize="32sp"
+                android:textColor="@color/text_primary"
                 android:gravity="center"
-                android:layout_marginTop="50dp"/>
+                android:layout_marginTop="20dp"/>
 
             <TextView
                 android:id="@+id/tvTagline"
@@ -41,21 +42,20 @@
                 android:layout_height="wrap_content"
                 android:text="Simple solutions for everyday tech problems"
                 android:textSize="14sp"
-                android:textColor="#6B7280"
+                android:textColor="@color/text_secondary"
                 android:gravity="center"
                 android:paddingTop="10dp"
                 android:paddingBottom="16dp"/>
 
-            <!-- Search bar -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="1dp"
-                app:cardUseCompatPadding="true"
-                android:backgroundTint="@color/search_bg"
-                android:textColor="@color/text_primary"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/border_color"
+                app:cardBackgroundColor="@color/card_bg"
                 android:layout_marginTop="16dp">
 
                 <LinearLayout
@@ -69,7 +69,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@android:drawable/ic_menu_search"
-                        app:tint="#9CA3AF"
+                        app:tint="@color/icon_tint"
                         android:contentDescription="Search"/>
 
                     <EditText
@@ -80,12 +80,13 @@
                         android:layout_marginStart="10dp"
                         android:background="@android:color/transparent"
                         android:hint="Search for guides..."
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_secondary"
                         android:textSize="14sp"
                         android:padding="2dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Primary button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnWizard"
                 android:layout_width="match_parent"
@@ -96,14 +97,12 @@
                 app:cornerRadius="14dp"
                 app:icon="@android:drawable/ic_menu_manage"
                 app:iconPadding="10dp"
-                app:iconTint="#FFFFFF"
-                app:strokeWidth="2dp"
-                app:strokeColor="#E5E7EB"
+                app:iconTint="@color/button_text"
+                app:strokeWidth="0dp"
                 android:backgroundTint="@color/button_primary"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="20dp"/>
+                android:textColor="@color/button_text"
+                android:layout_marginTop="10dp"/>
 
-            <!-- Secondary button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnReport"
                 android:layout_width="match_parent"
@@ -113,45 +112,39 @@
                 app:cornerRadius="14dp"
                 app:icon="@android:drawable/ic_dialog_alert"
                 app:iconPadding="10dp"
-                app:iconTint="#111827"
-                app:strokeWidth="2dp"
-                app:strokeColor="#E5E7EB"
-                android:backgroundTint="#FFFFFF"
-                android:textColor="#111827"
-                android:layout_marginBottom="18dp"/>
+                app:iconTint="@color/text_primary"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/border_color"
+                android:backgroundTint="@color/card_bg"
+                android:textColor="@color/text_primary"
+                android:layout_marginBottom="10dp"/>
 
-            <!-- ===== END HEADER ===== -->
+        </LinearLayout>
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_main"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp">
 
-            <!-- Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Browse Categories"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                android:paddingBottom="12dp"
-                android:layout_marginTop="20dp"/>
+                android:textColor="@color/text_primary"/>
+        </FrameLayout>
 
-            <!-- Categories RecyclerView -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvCategories"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false"/>
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <!-- Footer -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCategories"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="20dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="© 2026 FixIt. Simple solutions for everyday problems."
-                android:textSize="12sp"
-                android:textColor="#6B7280"
-                android:gravity="center"
-                android:paddingTop="18dp"
-                android:paddingBottom="8dp"/>
-        </LinearLayout>
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
