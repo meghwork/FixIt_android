@@ -35,6 +35,8 @@
 
         <activity android:name=".GuideDetailsActivity" />
 
+        <activity android:name=".MoreActivity" />
+
     </application>
 
 </manifest>

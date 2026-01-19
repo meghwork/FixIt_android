@@ -138,17 +138,25 @@
             android:id="@+id/btnGoogle"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Google"
+            android:text="Continue with Google"
             android:textAllCaps="false"
             android:textSize="16sp"
+            android:textStyle="bold"
             android:textColor="@color/text_primary"
-            app:cornerRadius="12dp"
-            app:strokeWidth="1dp"
+
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+
+            app:backgroundTint="@color/card_bg"
             app:strokeColor="@color/border_color"
-            android:backgroundTint="@android:color/transparent"
-            app:icon="@drawable/ic_info_circle"
-            app:iconTint="@null"
-            app:iconGravity="textStart"/>
+            app:strokeWidth="3dp"
+            app:cornerRadius="4dp"
+            app:elevation="1dp"
+
+            app:icon="@drawable/ic_google"
+            app:iconGravity="textStart"
+            app:iconPadding="12dp"
+            app:iconTint="@null"/>
     </LinearLayout>
 
     <LinearLayout

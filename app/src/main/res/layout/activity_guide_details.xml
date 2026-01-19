@@ -2,7 +2,6 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_main"
@@ -21,6 +20,8 @@
             android:orientation="vertical"
             android:paddingBottom="16dp"
             app:layout_scrollFlags="scroll"
+            android:clipToPadding="false"
+            android:clipChildren="false"
             >
 
             <androidx.appcompat.widget.Toolbar

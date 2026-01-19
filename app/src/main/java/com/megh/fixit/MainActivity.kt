@@ -4,9 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         recyclerView = findViewById(R.id.rvCategories)
-// Use a Grid with 2 columns
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         // CHANGED: We now pass a "lambda" function (the code inside {}) to the adapter
@@ -42,6 +41,21 @@ class MainActivity : AppCompatActivity() {
         fetchCategories()
         // Removed loadCategories() call because fetchCategories() seems to be the one you want to use
         // If you were using loadCategories() before, just make sure to only use ONE method to avoid duplicates.
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNav.selectedItemId = R.id.nav_home // Highlight Home
+
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> true // Already here
+                R.id.nav_more -> {
+                    startActivity(Intent(this, MoreActivity::class.java))
+                    // Do not finish() so user can back-press to return home
+                    false // Don't highlight "More" on this screen
+                }
+                else -> false
+            }
+        }
+
     }
 
     private fun fetchCategories() {
