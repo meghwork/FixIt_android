@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_house_menu"
         android:title="Home" />
 
     <item
         android:id="@+id/nav_more"
-        android:icon="@drawable/ic_info_circle"
+        android:icon="@drawable/ic_more_menu"
         android:title="More" />
 </menu>

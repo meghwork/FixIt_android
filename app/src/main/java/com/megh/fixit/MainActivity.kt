@@ -1,63 +1,97 @@
 package com.megh.fixit
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
+    // Category Variables
+    private lateinit var rvCategories: RecyclerView
     private lateinit var adapter: CategoryAdapter
     private val categoryList = mutableListOf<Category>()
 
+    private lateinit var auth: FirebaseAuth
+
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView = findViewById(R.id.rvCategories)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        // 1. Setup Auth & Header
+        auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+        findViewById<TextView>(R.id.tvAppName).text = "Hello, ${user?.displayName ?: "Fixer"}!"
 
-        // CHANGED: We now pass a "lambda" function (the code inside {}) to the adapter
-        adapter = CategoryAdapter(categoryList, this) { selectedCategory ->
+        // 2. Setup Category List
+        rvCategories = findViewById(R.id.rvCategories)
+        rvCategories.layoutManager = LinearLayoutManager(this)
 
-            // This code runs when you click a category
+        adapter = CategoryAdapter(categoryList) { selectedCategory ->
             val intent = Intent(this, CategoryDetailsActivity::class.java)
-
-            // We pass data to the next screen so it knows what to load
-            intent.putExtra("CAT_ID", selectedCategory.id)        // The Doc ID (e.g., "electronics")
-            intent.putExtra("CAT_NAME", selectedCategory.name)    // The Name (e.g., "Electronics")
+            intent.putExtra("CAT_ID", selectedCategory.id)
+            intent.putExtra("CAT_NAME", selectedCategory.name)
             intent.putExtra("CAT_SUBTITLE", selectedCategory.subtitle)
-
             startActivity(intent)
         }
+        rvCategories.adapter = adapter
 
-        recyclerView.adapter = adapter
+        // 3. Setup Search Bar (Opens new screen)
+        setupSearchBar()
 
-        fetchCategories()
-        // Removed loadCategories() call because fetchCategories() seems to be the one you want to use
-        // If you were using loadCategories() before, just make sure to only use ONE method to avoid duplicates.
+        // 4. Setup Bottom Navigation
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
-        bottomNav.selectedItemId = R.id.nav_home // Highlight Home
+        bottomNav.selectedItemId = R.id.nav_home
 
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> true // Already here
                 R.id.nav_more -> {
                     startActivity(Intent(this, MoreActivity::class.java))
-                    // Do not finish() so user can back-press to return home
                     false // Don't highlight "More" on this screen
                 }
                 else -> false
             }
         }
 
+        // 5. Load Data
+        fetchCategories()
     }
 
+    private fun setupSearchBar() {
+        val searchView = findViewById<SearchView>(R.id.searchView)
+
+        // Option A: If user clicks the magnifying glass icon
+        searchView.setOnClickListener {
+            openSearchScreen()
+        }
+
+        // Option B: If user taps the text area (Focus)
+        searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                openSearchScreen()
+                searchView.clearFocus() // Clear focus so it doesn't loop
+            }
+        }
+    }
+
+    private fun openSearchScreen() {
+        val intent = Intent(this, SearchActivity::class.java)
+        // No animation for "Instant" feel
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        startActivity(intent)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
     private fun fetchCategories() {
         FirebaseFirestore.getInstance()
             .collection("categories")
@@ -65,13 +99,9 @@ class MainActivity : AppCompatActivity() {
             .orderBy("order")
             .get()
             .addOnSuccessListener { snapshot ->
-                Log.d("FixIt", "Fetched categories count = ${snapshot.size()}")
-
                 categoryList.clear()
                 for (doc in snapshot.documents) {
-                    // Manual parsing to ensure safety
                     val active = doc.getBoolean("active") ?: false
-                    // If your Firestore uses numbers for order, handle Long vs Int safety
                     val order = doc.getLong("order") ?: 999
 
                     val category = Category(
@@ -84,7 +114,6 @@ class MainActivity : AppCompatActivity() {
                     )
                     categoryList.add(category)
                 }
-
                 adapter.notifyDataSetChanged()
             }
             .addOnFailureListener { e ->

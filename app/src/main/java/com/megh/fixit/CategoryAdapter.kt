@@ -1,6 +1,6 @@
 package com.megh.fixit
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class CategoryAdapter(
-    private val list: List<Category>,
-    private val context: Context,
+    private var list: List<Category>,
     private val onItemClick: (Category) -> Unit
 ) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
@@ -26,13 +25,14 @@ class CategoryAdapter(
         return ViewHolder(view)
     }
 
+    @SuppressLint("DiscouragedApi")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
 
-        holder.title.text = item.name ?: ""
-        holder.subtitle.text = (item.subtitle ?: "").trim().trim('"')
+        holder.title.text = item.name
+        holder.subtitle.text = item.subtitle.trim().trim('"')
 
-        val iconName = (item.icon ?: "").trim().trim('"')
+        val iconName = item.icon.trim().trim('"')
         val resId = holder.itemView.context.resources.getIdentifier(
             iconName,
             "drawable",
@@ -46,4 +46,5 @@ class CategoryAdapter(
     }
 
     override fun getItemCount(): Int = list.size
+
 }

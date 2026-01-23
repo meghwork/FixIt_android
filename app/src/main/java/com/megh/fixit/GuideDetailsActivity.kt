@@ -1,5 +1,6 @@
 package com.megh.fixit
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -42,6 +43,7 @@ class GuideDetailsActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun fetchSteps(guideId: String) {
         val db = FirebaseFirestore.getInstance()
 

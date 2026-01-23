@@ -1,5 +1,6 @@
 package com.megh.fixit
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ class StepAdapter(private val steps: List<Step>) : RecyclerView.Adapter<StepAdap
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val step = steps[position]
 
@@ -32,7 +34,7 @@ class StepAdapter(private val steps: List<Step>) : RecyclerView.Adapter<StepAdap
         holder.desc.text = step.description
 
         // TIP LOGIC: Show yellow box ONLY if tip exists
-        if (!step.tip.isNullOrEmpty()) {
+        if (step.tip.isNotEmpty()) {
             holder.layoutTip.visibility = View.VISIBLE
             holder.tipText.text = step.tip
         } else {

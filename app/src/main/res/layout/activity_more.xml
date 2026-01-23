@@ -28,7 +28,7 @@
             android:layout_height="32dp"
             android:src="@drawable/chevron_right"
             android:rotation="180"
-            app:tint="@color/text_primary"
+            app:tint="#111827"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"/>
@@ -39,7 +39,7 @@
             android:text="Profile &amp; Settings"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/text_primary"
+            android:textColor="#111827"
             android:layout_marginStart="16dp"/>
     </LinearLayout>
 

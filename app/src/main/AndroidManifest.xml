@@ -37,6 +37,8 @@
 
         <activity android:name=".MoreActivity" />
 
+        <activity android:name=".SearchActivity" android:windowSoftInputMode="stateVisible"/>
+
     </application>
 
 </manifest>
